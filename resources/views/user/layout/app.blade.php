@@ -39,23 +39,19 @@
     <link rel="stylesheet" href="{{ url('public/') }}/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
     <link rel="stylesheet" href="{{ url('public/') }}/assets/vendor/libs/node-waves/node-waves.css" />
     <link rel="stylesheet" href="{{ url('public/') }}/assets/vendor/libs/typeahead-js/typeahead.css" />
+    <link rel="stylesheet" href="{{ url('public/') }}/assets/vendor/libs/animate-css/animate.css" />
+    <link rel="stylesheet" href="{{ url('public/') }}/assets/vendor/libs/sweetalert2/sweetalert2.css" />
     <link rel="stylesheet" href="{{ url('public/') }}/assets/vendor/libs/flatpickr/flatpickr.css" />
-    <link rel="stylesheet"
-        href="{{ url('public/') }}/assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.css" />
-    <link rel="stylesheet"
-        href="{{ url('public/') }}/assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.css" />
+    <link rel="stylesheet" href="{{ url('public/') }}/assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.css" />
+    <link rel="stylesheet" href="{{ url('public/') }}/assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.css" />
     <link rel="stylesheet" href="{{ url('public/') }}/assets/vendor/libs/jquery-timepicker/jquery-timepicker.css" />
     <link rel="stylesheet" href="{{ url('public/') }}/assets/vendor/libs/pickr/pickr-themes.css" />
     <link rel="stylesheet" href="{{ url('public/') }}/assets/vendor/libs/spinkit/spinkit.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
-    {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet"> --}}
-    <link rel="stylesheet" href="{{ url('public/') }}/assets/vendor/libs/apex-charts/apex-charts.css" />
     <link rel="stylesheet" href="{{ url('public/') }}/assets/vendor/libs/swiper/swiper.css" />
     <link rel="stylesheet" href="{{ url('public/') }}/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css" />
-    <link rel="stylesheet"
-        href="{{ url('public/') }}/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css" />
-    <link rel="stylesheet"
-        href="{{ url('public/') }}/assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css" />
+    <link rel="stylesheet" href="{{ url('public/') }}/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css" />
+    <link rel="stylesheet" href="{{ url('public/') }}/assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css" />
 
     <!-- Page CSS -->
     <link rel="stylesheet" href="{{ url('public/') }}/assets/vendor/css/pages/cards-advance.css" />

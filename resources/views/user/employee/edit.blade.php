@@ -592,133 +592,129 @@
                     @endif
                 </div>
             </div> --}}
-                <div class="col-md-12">
-                    <div class="mb-4">
-                        <h5 class="card-header">Academic Details</h5>
-                        {{-- {{ dd($data->academicdetails) }} --}}
-                        @if (count($data->academicdetails) > 0)
-                        @foreach ($data->academicdetails as $academic_data)
-                        <div class="row g-3 academic-row" data-id="{{ $academic_data->id }}">
-                            <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-12 text-end">
-                                <a class="btn btn-danger btn-lg mb-3 delete-academic"
-                                    data-id="{{ $academic_data->id }}"><i
-                                        class="fa-solid fa-trash plus-icon-color"></i></a>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="mb-3">
-                                    <div class="form-floating">
-                                        <input type="text" name="institute_university[]" class="form-control"
-                                            id="floatingInput" placeholder="Institute/University"
-                                            aria-describedby="floatingInputHelp"
-                                            value="{{ $academic_data->institute_university }}" />
-                                        <label for="floatingInput">Institute/University</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="mb-3">
-                                    <div class="form-floating">
-                                        <input type="text" name="year_of_passing[]" class="form-control"
-                                            id="floatingInput" placeholder="Year Of Passing"
-                                            aria-describedby="floatingInputHelp"
-                                            value="{{ $academic_data->year_of_passing }}" />
-                                        <label for="floatingInput">Year Of Passing</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="mb-3">
-                                    <div class="form-floating">
-                                        <input type="text" name="marks[]" class="form-control" id="floatingInput"
-                                            placeholder="Marks" aria-describedby="floatingInputHelp"
-                                            value="{{ $academic_data->marks }}" />
-                                        <label for="floatingInput">Marks</label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label">Education Certificate</label>
-                                    <input class="form-control" name="education_image[]" type="file" />
+            <div class="col-md-12">
+                <div class="mb-4">
+                    <h5 class="card-header">Academic Details</h5>
+                    @if (count($data->academicdetails) > 0)
+                    @foreach ($data->academicdetails as $academic_data)
+                    <div class="row g-3 academic-row" data-id="{{ $academic_data->id }}">
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-12 text-end">
+                            <a class="btn btn-danger btn-lg mb-3 delete-academic" data-id="{{ $academic_data->id }}"><i
+                                    class="fa-solid fa-trash plus-icon-color"></i></a>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <div class="form-floating">
                                     <input type="hidden" name="academic_id[]" value="{{ $academic_data->id }}">
-                                </div>
-                                @if (isset($academic_data->education_image) &&
-                                !empty($academic_data->education_image))
-                                <a href="{{ asset('storage/uploads/education_images/' . $academic_data->education_image) }}"
-                                    target="_blank"><img
-                                        src="{{ asset('storage/uploads/education_images/' . $academic_data->education_image) }}"
-                                        alt="Academic Image" height="100px" width="100px"></a>
-                                @endif
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="exampleFormControlTextarea1" class="form-label">Remarks</label>
-                                    <textarea class="form-control" name="remarks[]" id="exampleFormControlTextarea1"
-                                        rows="1">{{ $academic_data->remarks }}</textarea>
+                                    <input type="text" name="institute_university[]" class="form-control"
+                                        id="floatingInput" placeholder="Institute/University"
+                                        aria-describedby="floatingInputHelp"
+                                        value="{{ $academic_data->institute_university }}" />
+                                    <label for="floatingInput">Institute/University</label>
                                 </div>
                             </div>
                         </div>
-                        @endforeach
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <div class="form-floating">
+                                    <input type="text" name="year_of_passing[]" class="form-control" id="floatingInput"
+                                        placeholder="Year Of Passing" aria-describedby="floatingInputHelp"
+                                        value="{{ $academic_data->year_of_passing }}" />
+                                    <label for="floatingInput">Year Of Passing</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <div class="form-floating">
+                                    <input type="text" name="marks[]" class="form-control" id="floatingInput"
+                                        placeholder="Marks" aria-describedby="floatingInputHelp"
+                                        value="{{ $academic_data->marks }}" />
+                                    <label for="floatingInput">Marks</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="formFile" class="form-label">Education Certificate</label>
+                                <input class="form-control" name="education_image[]" type="file" />
+                            </div>
+                            @if (isset($academic_data->education_image) &&
+                            !empty($academic_data->education_image))
+                            <a href="{{ asset('storage/uploads/education_images/' . $academic_data->education_image) }}"
+                                target="_blank"><img
+                                    src="{{ asset('storage/uploads/education_images/' . $academic_data->education_image) }}"
+                                    alt="Academic Image" height="100px" width="100px"></a>
+                            @endif
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="exampleFormControlTextarea1" class="form-label">Remarks</label>
+                                <textarea class="form-control" name="remarks[]" id="exampleFormControlTextarea1"
+                                    rows="1">{{ $academic_data->remarks }}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                    <div class="mt-3 append-academic"></div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-12 text-end">
+                        <a class="btn btn-primary btn-lg" id="add-more-academic"><i
+                                class="fa-solid fa-plus plus-icon-color"></i></a>
+                    </div>
+                    @else
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <div class="form-floating">
+                                    <input type="text" name="institute_university[]" class="form-control"
+                                        id="floatingInput" placeholder="Institute/University"
+                                        aria-describedby="floatingInputHelp" />
+                                    <label for="floatingInput">Institute/University</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <div class="form-floating">
+                                    <input type="text" name="year_of_passing[]" class="form-control" id="floatingInput"
+                                        placeholder="Year Of Passing" aria-describedby="floatingInputHelp" />
+                                    <label for="floatingInput">Year Of Passing</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <div class="form-floating">
+                                    <input type="text" name="marks[]" class="form-control" id="floatingInput"
+                                        placeholder="Marks" aria-describedby="floatingInputHelp" />
+                                    <label for="floatingInput">Marks</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="formFile" class="form-label">Education Certificate</label>
+                                <input class="form-control" name="education_image[]" type="file" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="exampleFormControlTextarea1" class="form-label">Remarks</label>
+                                <textarea class="form-control" name="remarks[]" id="exampleFormControlTextarea1"
+                                    rows="1"></textarea>
+                            </div>
+                        </div>
                         <div class="mt-3 append-academic"></div>
                         <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-12 text-end">
                             <a class="btn btn-primary btn-lg" id="add-more-academic"><i
                                     class="fa-solid fa-plus plus-icon-color"></i></a>
                         </div>
-                        @else
-                        <div class="row g-3">
-                            <div class="col-md-4">
-                                <div class="mb-3">
-                                    <div class="form-floating">
-                                        <input type="text" name="institute_university[]" class="form-control"
-                                            id="floatingInput" placeholder="Institute/University"
-                                            aria-describedby="floatingInputHelp" />
-                                        <label for="floatingInput">Institute/University</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="mb-3">
-                                    <div class="form-floating">
-                                        <input type="text" name="year_of_passing[]" class="form-control"
-                                            id="floatingInput" placeholder="Year Of Passing"
-                                            aria-describedby="floatingInputHelp" />
-                                        <label for="floatingInput">Year Of Passing</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="mb-3">
-                                    <div class="form-floating">
-                                        <input type="text" name="marks[]" class="form-control" id="floatingInput"
-                                            placeholder="Marks" aria-describedby="floatingInputHelp" />
-                                        <label for="floatingInput">Marks</label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label">Education Certificate</label>
-                                    <input class="form-control" name="education_image[]" type="file" />
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="exampleFormControlTextarea1" class="form-label">Remarks</label>
-                                    <textarea class="form-control" name="remarks[]" id="exampleFormControlTextarea1"
-                                        rows="1"></textarea>
-                                </div>
-                            </div>
-                            <div class="mt-3 append-academic"></div>
-                            <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-12 text-end">
-                                <a class="btn btn-primary btn-lg" id="add-more-academic"><i
-                                        class="fa-solid fa-plus plus-icon-color"></i></a>
-                            </div>
-                        </div>
-                        @endif
                     </div>
+                    @endif
                 </div>
+            </div>
             {{-- END ACADEMIC DETAILS --}}
             <hr>
             {{-- START EXPERIENCE DETAILS --}}
@@ -736,6 +732,7 @@
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <div class="form-floating">
+                                    <input type="hidden" name="experience_id[]" value="{{ $experience_data->id }}">
                                     <input type="text" name="company_name[]" class="form-control" id="floatingInput"
                                         placeholder="Company Name" aria-describedby="floatingInputHelp"
                                         value="{{ $experience_data->company_name }}" />
@@ -774,8 +771,6 @@
                             <div class="mb-3">
                                 <label for="formFile" class="form-label">Experience Certificate</label>
                                 <input class="form-control" name="experience_certificate_image[]" type="file" />
-                                <input type="hidden" name="experience_certificate_image_old"
-                                    value="{{ $experience_data->experience_certificate_image }}">
                             </div>
                             @if (isset($experience_data->experience_certificate_image) &&
                             !empty($experience_data->experience_certificate_image))
@@ -879,6 +874,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <div class="form-floating">
+                                    <input type="hidden" name="family_id[]" value="{{ $family_data->id }}">
                                     <input type="text" name="fm_name[]" class="form-control" id="floatingInput"
                                         placeholder="Name" aria-describedby="floatingInputHelp"
                                         value="{{ $family_data->fm_name }}" />
@@ -1023,20 +1019,10 @@
                                 <label for="defaultSelect" class="form-label">Job Time</label>
                                 <select id="defaultSelect" class="form-select" name="job_time">
                                     <option selected value="">Select</option>
-                                    <option value="08:30 To 17:00" {{ $data->hrdetails[0]->job_time ==
-                                        '08:30 To
-                                        17:00'
-                                        ? 'selected'
-                                        : '' }}>
-                                        08:30
-                                        To 17:00</option>
-                                    <option value="09:00 To 17:30" {{ $data->hrdetails[0]->job_time ==
-                                        '09:00 To
-                                        17:30'
-                                        ? 'selected'
-                                        : '' }}>
-                                        09:00
-                                        To 17:30</option>
+                                    <option value="08:30 To 17:00" {{ $data->hrdetails[0]->job_time == '08:30 To 17:00'
+                                        ? 'selected' : '' }}>08:30 To 17:00</option>
+                                    <option value="09:00 To 17:30" {{ $data->hrdetails[0]->job_time == '09:00 To 17:30'
+                                        ? 'selected' : '' }}>09:00 To 17:30</option>
                                 </select>
                             </div>
                         </div>
@@ -1179,6 +1165,7 @@
                 <div class="col-md-4">
                     <div class="mb-3">
                         <div class="form-floating">
+                            <input type="hidden" name="experience_id[]" value="0">
                             <input type="text" name="company_name[]" class="form-control" id="floatingInput"
                                 placeholder="Company Name" aria-describedby="floatingInputHelp" />
                             <label for="floatingInput">Company Name</label>
@@ -1242,6 +1229,7 @@
                 <div class="col-md-6">
                     <div class="mb-3">
                         <div class="form-floating">
+                            <input type="hidden" name="family_id[]" value="0">
                             <input type="text" name="fm_name[]" class="form-control" id="floatingInput"
                                 placeholder="Name" aria-describedby="floatingInputHelp" />
                             <label for="floatingInput">Name</label>
@@ -1384,18 +1372,24 @@
                 $.ajax({
                     url: '{{ url("employee-detail/$data->id") }}',
                     type: "POST",
-                    dataType: "json",
                     headers: {
                         'X-CSRF-TOKEN': _token
                     },
+                    dataType: "json",
                     data: formData,
                     processData: false,
                     contentType: false, // Set content type to false for file uploads
                     success: function(response) {
                         $('.error').text('');
-                        // if (response.status == 'success') {
-                        //     window.location.href = "{{ url('job-applicant') }}";
-                        // }
+                        if (response.status == 'success') {
+                            window.location.href = "{{ url('employee-detail') }}"
+                        }
+                        else{
+                            // window.location.reload();
+                            // console.error('Error:', response);
+                            toastr.error('Something went wrong. Please try again later.', 'Error');
+                            // toastr.error(response.message, 'error');
+                        }
                     },
                     error: function(error) {
                         if (error.status === 422) {
@@ -1410,5 +1404,12 @@
                 });
             });
         });
+
+        
+        @if(session('fail'))
+                toastr.error("{{ session('fail') }}", 'Fail');
+        @endif
+
+
 </script>
 @endsection

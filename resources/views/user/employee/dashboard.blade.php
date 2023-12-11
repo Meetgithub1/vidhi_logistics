@@ -16,8 +16,8 @@
         </div>
       </div>
       <div class="card-body">
-        <table id="alternative-pagination1"
-          class="table nowrap dt-responsive align-middle table-hover table-bordered data-table" style="width:100%">
+        <table id="datatable" class="table nowrap dt-responsive align-middle table-hover table-bordered data-table"
+          style="width:100%">
           <thead>
             <tr>
               <th>ID</th>
@@ -32,6 +32,8 @@
     </div>
   </div>
 </div>
+{{-- <button type="button" class="btn btn-primary" id="confirm-text">Alert</button> --}}
+
 <!--end row-->
 @endsection
 
@@ -78,6 +80,56 @@
                 ]
 
             });
+
+            $(document).on("click", ".delete_btn", function() {
+
+                  $.ajaxSetup({
+                      headers: {
+                          'X-CSRF-TOKEN': "{{ @csrf_token() }}"
+                      },
+                  });
+                  var table = $('#datatable').dataTable();
+                  var id = $(this).data("id");
+                  Swal.fire({
+                  title: 'Are you sure?',
+                  text: "You won't be able to revert this!",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonText: 'Yes, delete it!',
+                  customClass: {
+                    confirmButton: 'btn btn-primary me-3',
+                    cancelButton: 'btn btn-label-secondary'
+                  },
+                  buttonsStyling: false
+                }).then(function(result) {
+                      if (result.value) {
+                          $.ajax({
+                              type: "DELETE",
+                              url: "{{ url('employee-detail') }}/" + id,
+                              dataType: "json",
+                              success: function(response) {
+                                  if (response.status == "success") {
+                                      // Swal.fire('Deleted!', 'Your data has been deleted.',
+                                      //     'success');
+                                      Swal.fire({
+                                        icon: 'success',
+                                        title: 'Deleted!',
+                                        text: 'Your file has been deleted.',
+                                        customClass: {
+                                          confirmButton: 'btn btn-success'
+                                        }
+                                      });
+                                      table.fnDraw();
+                                  }
+                              },
+                              // error: function(e) {
+                              //     // Swal.fire('Error!', 'Something went wrong.', 'error');
+                              //     swal("Data Not Deleted!", "Please Try Again!","error");
+                              // }
+                          });
+                      }
+                  });
+              });
 
             
         @if(session('success'))

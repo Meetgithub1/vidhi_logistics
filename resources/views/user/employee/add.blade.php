@@ -877,7 +877,6 @@
                 // show_loader();
                 var url = "{{ url('employee-detail') }}";
                 var formData = new FormData($('#form_id')[0]);
-                console.log("formData:",formData);
                 $.ajax({
                     url: url,
                     type: "POST",

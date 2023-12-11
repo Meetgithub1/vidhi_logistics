@@ -47,6 +47,7 @@
 
 <!-- Vendors JS -->
 <script src="{{ url('public/') }}/assets/vendor/libs/moment/moment.js"></script>
+<script src="{{ url('public/') }}/assets/vendor/libs/sweetalert2/sweetalert2.js"></script>
 <script src="{{ url('public/') }}/assets/vendor/libs/flatpickr/flatpickr.js"></script>
 <script src="{{ url('public/') }}/assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.js"></script>
 <script src="{{ url('public/') }}/assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.js"></script>
@@ -59,8 +60,8 @@
 <script src="{{ url('public/') }}/assets/js/main.js"></script>
 
 <!-- Page JS -->
-<script src="{{ url('public/') }}/assets/js/form-basic-inputs.js"></script>
 <script src="{{ url('public/') }}/assets/js/forms-pickers.js"></script>
+<script src="{{ url('public/') }}/assets/js/form-basic-inputs.js"></script>
+<script src="{{ url('public/') }}/assets/js/extended-ui-sweetalert2.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script> --}}
 <script src="{{ url('public/') }}/assets/js/dashboards-analytics.js"></script>
