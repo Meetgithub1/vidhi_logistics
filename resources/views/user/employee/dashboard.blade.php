@@ -33,6 +33,7 @@
   </div>
 </div>
 {{-- <button type="button" class="btn btn-primary" id="confirm-text">Alert</button> --}}
+{{-- <span class="loader"></span> --}}
 
 <!--end row-->
 @endsection
@@ -55,9 +56,12 @@
                 },
 
                 columns: [
+                    // {
+                    //     data: 'id',
+                    //     name: 'id',
+                    // },
                     {
-                        data: 'id',
-                        name: 'id',
+                        data: 'DT_RowIndex'
                     },
                     {
                         data: 'emp_name',

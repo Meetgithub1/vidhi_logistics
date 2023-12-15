@@ -149,19 +149,6 @@
                         </div>
                     </div>
                 </div>
-                {{-- <div class="row">
-                    <div class="col-md-6">
-                        <label for="flatpickr-date" class="form-label">Birth Date</label>
-                        <input type="date" class="form-control" name="birth_date" placeholder="YYYY-MM-DD" id="dob1" />
-                    </div>
-                    <div class="col-md-6 p-3">
-                        <div class="form-floating">
-                            <input type="text" name="age" class="form-control" id="year1" placeholder="Age"
-                                aria-describedby="floatingInputHelp" />
-                            <label for="age-calculate">Age</label>
-                        </div>
-                    </div>
-                </div> --}}
                 <div class="mb-3">
                     <label for="exampleFormControlTextarea1" class="form-label">Permanent Address</label>
                     <textarea class="form-control" name="permanent_address" id="exampleFormControlTextarea1"
@@ -204,18 +191,58 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    <div class="form-floating">
-                        <input type="text" name="emp_designation" class="form-control" id="floatingInput"
-                            placeholder="Designation" aria-describedby="floatingInputHelp" />
-                        <label for="floatingInput">Designation</label>
-                    </div>
+                    {{-- <input type="text" name="emp_designation" class="form-control" id="floatingInput"
+                        placeholder="Designation" aria-describedby="floatingInputHelp" />
+                    <label for="floatingInput">Designation</label> --}}
+                    <label for="defaultSelect" class="form-label">Designation</label>
+                    <select id="defaultSelect" class="form-select" name="emp_designation">
+                        <option selected value="">Select</option>
+                        <option value="Managar">Managar</option>
+                        <option value="Supervisor">Supervisor</option>
+                        <option value="Inspector">Inspector</option>
+                        <option value="Fitter">Fitter</option>
+                        <option value="Tester">Tester</option>
+                        <option value="Helper">Helper</option>
+                        <option value="Painter">Painter</option>
+                        <option value="Operator">Operator</option>
+                        <option value="Forklift Driver">Forklift Driver</option>
+                    </select>
                 </div>
                 <div class="mb-3">
-                    <div class="form-floating">
-                        <input type="text" name="department" class="form-control" id="floatingInput"
-                            placeholder="Department" aria-describedby="floatingInputHelp" />
-                        <label for="floatingInput">Department</label>
-                    </div>
+                    {{-- <input type="text" name="department" class="form-control" id="floatingInput"
+                        placeholder="Department" aria-describedby="floatingInputHelp" />
+                    <label for="floatingInput">Department</label> --}}
+                    <label for="defaultSelect" class="form-label">Department</label>
+                    <select id="defaultSelect" class="form-select" name="department">
+                        <option selected value="">Select</option>
+                        <option value="Application">Application</option>
+                        <option value="Assembly cell-1">Assembly cell-1</option>
+                        <option value="Assembly XL/VARSHA/SM">Assembly XL/VARSHA/SM</option>
+                        <option value="Engine Lifting">Engine Lifting</option>
+                        <option value="Engine Rework">Engine Rework</option>
+                        <option value="Fork Lift Driver">Fork Lift Driver</option>
+                        <option value="KPS">KPS</option>
+                        <option value="Oil Filling">Oil Filling</option>
+                        <option value="Packing">Packing</option>
+                        <option value="Painting">Painting</option>
+                        <option value="Pipe/Tork/Tappet">Pipe/Tork/Tappet</option>
+                        <option value="Product Support">Product Support</option>
+                        <option value="Startebility Test Export">Startebility Test Export</option>
+                        <option value="Store Helper">Store Helper</option>
+                        <option value="Sub Assembly">Sub Assembly</option>
+                        <option value="Testing">Testing</option>
+                        <option value="Washing Helper">Washing Helper</option>
+                        <option value="Material">Material</option>
+                        <option value="Store Supervisor">Store Supervisor</option>
+                        <option value="Production">Production</option>
+                        <option value="QA">Q.A.</option>
+                        <option value="SQIP">SQIP</option>
+                        <option value="P&IR HR">P&IR HR</option>
+                        <option value="IT">IT</option>
+                        <option value="Landscaping">Landscaping</option>
+                        <option value="Pump Base Plate">Pump Base Plate</option>
+                        <option value="Water Leackage">Water Leackage</option>
+                    </select>
                 </div>
                 <div class="mb-3">
                     <label for="defaultSelect" class="form-label">Category</label>
@@ -530,7 +557,8 @@
                         </div>
                         <div class="mt-3 append-family"></div>
                         <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-12 text-end">
-                            <a class="btn btn-primary btn-lg" id="add-more-family"><i class="fa-solid fa-plus plus-icon-color"></i></a>
+                            <a class="btn btn-primary btn-lg" id="add-more-family"><i
+                                    class="fa-solid fa-plus plus-icon-color"></i></a>
                         </div>
                     </div>
                 </div>
@@ -657,7 +685,8 @@
 <div class="clone-academic" style="display:none">
     <div class="closet-div">
         <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-12 text-end">
-            <a class="btn btn-danger btn-lg mb-3" id="delete-academic"><i class="fa-solid fa-trash plus-icon-color"></i></a>
+            <a class="btn btn-danger btn-lg mb-3" id="delete-academic"><i
+                    class="fa-solid fa-trash plus-icon-color"></i></a>
         </div>
         <div class="mb-3">
             <div class="row">
@@ -714,7 +743,8 @@
 <div class="clone-experience" style="display:none">
     <div class="closet-div-experience">
         <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-12 text-end">
-            <a class="btn btn-danger btn-lg mb-3" id="delete-experience"><i class="fa-solid fa-trash plus-icon-color"></i></a>
+            <a class="btn btn-danger btn-lg mb-3" id="delete-experience"><i
+                    class="fa-solid fa-trash plus-icon-color"></i></a>
         </div>
         <div class="mb-3">
             <div class="row">
@@ -776,7 +806,8 @@
 <div class="clone-family" style="display:none">
     <div class="closet-div-family">
         <div class="col-12 col-sm-12 col-md-6 col-lg-12 col-xl-12 text-end">
-            <a class="btn btn-danger btn-lg mb-3" id="delete-family"><i class="fa-solid fa-trash plus-icon-color"></i></a>
+            <a class="btn btn-danger btn-lg mb-3" id="delete-family"><i
+                    class="fa-solid fa-trash plus-icon-color"></i></a>
         </div>
         <div class="mb-3">
             <div class="row">
@@ -874,7 +905,7 @@
 
             $(document).on("submit", "#form_id", function(e) {
                 e.preventDefault();
-                // show_loader();
+                show_loader();
                 var url = "{{ url('employee-detail') }}";
                 var formData = new FormData($('#form_id')[0]);
                 $.ajax({
@@ -905,7 +936,7 @@
                                 $('#' + key + '_error').text(value[0]);
                             });
                         }
-                        // hide_loader();
+                        hide_loader();
                     }
                 });
             });

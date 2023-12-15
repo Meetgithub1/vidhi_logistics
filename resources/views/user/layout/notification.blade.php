@@ -27,8 +27,5 @@
     @endif
 
     // Start Hide Show Loader
-    function show_loader() {$('.custom_loading').show()}
-    function hide_loader() {$('.custom_loading').hide()}
-    // End Hide Show Loader
-    hide_loader();
+  
 </script>

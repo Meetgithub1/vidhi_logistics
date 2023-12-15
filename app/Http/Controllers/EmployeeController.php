@@ -260,6 +260,10 @@ class EmployeeController extends Controller
      */
     public function show(string $id)
     {
+        $data = EmployeesDetails::with(['academicdetails', 'experiencedetails', 'familydetails', 'hrdetails', 'employeetraininghistory'])->where('id', $id)->first();
+        $EmployeeCount = EmployeesDetails::count();
+
+        return view('user.employee.show')->with(['data' => $data, 'EmployeesCount' => $EmployeeCount]);
 
     }
 
@@ -299,123 +303,109 @@ class EmployeeController extends Controller
         }
 
         try {
-            // Begin a transaction
-            DB::beginTransaction();
+        // Begin a transaction
+        DB::beginTransaction();
 
-            // Find the employee by ID
-            $employee = EmployeesDetails::findOrFail($id);
+        // Find the employee by ID
+        $employee = EmployeesDetails::findOrFail($id);
 
-            // Update the employee data
-            $employee->update([
-                'emp_name' => $post_data['emp_name'],
-                'email' => $post_data['email'],
-                'mobile_number' => $post_data['mobile_number'],
-                'employee_id' => $post_data['employee_id'],
-                'permanent_address' => $post_data['permanent_address'],
-                'present_address' => $post_data['present_address'],
-                'identification' => $post_data['identification'],
-                'religion' => $post_data['religion'],
-                'caste' => $post_data['caste'],
-                'sub_caste' => $post_data['sub_caste'],
-                'blood_group' => $post_data['blood_group'],
-                'age' => $post_data['calculated_age'],
-                'bank_name' => $post_data['bank_name'],
-                'account_number' => $post_data['account_number'],
-                'ifsc_code' => $post_data['ifsc_code'],
-                'branch_address' => $post_data['branch_address'],
-                'marriage_date' => $post_data['marriage_date'],
-                'birth_date' => $post_data['birth_date'],
-                'aadhar_number' => $post_data['aadhar_number'],
-                'uan_number' => $post_data['uan_number'],
-                'pf_member_id' => $post_data['pf_member_id'],
-                'passport_number' => $post_data['passport_number'],
-                'pan_number' => $post_data['pan_number'],
-                'driving_licence_number' => $post_data['driving_licence_number'],
-                'voter_number' => $post_data['voter_number'],
-                'height' => $post_data['height'],
-                'weight' => $post_data['weight'],
-                'emp_designation' => $post_data['emp_designation'],
-                'department' => $post_data['department'],
-                'date_of_joining' => $post_data['date_of_joining'],
-                'gender' => $post_data['gender'],
-                'category' => $post_data['category'],
-                'marital_status' => $post_data['marital_status'],
-                'details_of_surgical_operation' => $post_data['details_of_surgical_operation'],
-                'details_of_civil_or_criminal_litigation' => $post_data['details_of_civil_or_criminal_litigation'],
-                'language' => $post_data['language'],
-                'current_salary' => $post_data['current_salary'],
-                'expected_salary' => $post_data['expected_salary'],
-                'reason_for_job_change' => $post_data['reason_for_job_change'],
-                // 'emp_image' => isset($post_data['emp_image']) && ! empty($post_data['emp_image']) ? upload_file($request->file('emp_image'), $this->photo_path, $employee->emp_image) : null,
-                'emp_image' => isset($post_data['emp_image']) && $request->hasFile('emp_image') && $request->file('emp_image')->isValid() ? upload_file($request->file('emp_image'), $this->photo_path, $employee->emp_image) : $employee->emp_image,
+        // Update the employee data
+        $employee->update([
+            'emp_name' => $post_data['emp_name'],
+            'email' => $post_data['email'],
+            'mobile_number' => $post_data['mobile_number'],
+            'employee_id' => $post_data['employee_id'],
+            'permanent_address' => $post_data['permanent_address'],
+            'present_address' => $post_data['present_address'],
+            'identification' => $post_data['identification'],
+            'religion' => $post_data['religion'],
+            'caste' => $post_data['caste'],
+            'sub_caste' => $post_data['sub_caste'],
+            'blood_group' => $post_data['blood_group'],
+            'age' => $post_data['calculated_age'],
+            'bank_name' => $post_data['bank_name'],
+            'account_number' => $post_data['account_number'],
+            'ifsc_code' => $post_data['ifsc_code'],
+            'branch_address' => $post_data['branch_address'],
+            'marriage_date' => $post_data['marriage_date'],
+            'birth_date' => $post_data['birth_date'],
+            'aadhar_number' => $post_data['aadhar_number'],
+            'uan_number' => $post_data['uan_number'],
+            'pf_member_id' => $post_data['pf_member_id'],
+            'passport_number' => $post_data['passport_number'],
+            'pan_number' => $post_data['pan_number'],
+            'driving_licence_number' => $post_data['driving_licence_number'],
+            'voter_number' => $post_data['voter_number'],
+            'height' => $post_data['height'],
+            'weight' => $post_data['weight'],
+            'emp_designation' => $post_data['emp_designation'],
+            'department' => $post_data['department'],
+            'date_of_joining' => $post_data['date_of_joining'],
+            'gender' => $post_data['gender'],
+            'category' => $post_data['category'],
+            'marital_status' => $post_data['marital_status'],
+            'details_of_surgical_operation' => $post_data['details_of_surgical_operation'],
+            'details_of_civil_or_criminal_litigation' => $post_data['details_of_civil_or_criminal_litigation'],
+            'language' => $post_data['language'],
+            'current_salary' => $post_data['current_salary'],
+            'expected_salary' => $post_data['expected_salary'],
+            'reason_for_job_change' => $post_data['reason_for_job_change'],
+            'emp_image' => ($request->hasFile('emp_image') && $request->file('emp_image')->isValid()) ? upload_file($request->file('emp_image'), $this->photo_path, $employee->emp_image) : $employee->emp_image,
+            'aadhar_image' => ($request->hasFile('aadhar_image') && $request->file('aadhar_image')->isValid()) ? upload_file($request->file('aadhar_image'), $this->aadhar_path, $employee->aadhar_image) : $employee->aadhar_image,
+            'pan_image' => ($request->hasFile('pan_image') && $request->file('pan_image')->isValid()) ? upload_file($request->file('pan_image'), $this->pan_path, $employee->pan_image) : $employee->pan_image,
+            'bank_passbook_image' => ($request->hasFile('bank_passbook_image') && $request->file('bank_passbook_image')->isValid()) ? upload_file($request->file('bank_passbook_image'), $this->bank_passbook_path, $employee->bank_passbook_image) : $employee->bank_passbook_image,
+            'cast_certificate_image' => ($request->hasFile('cast_certificate_image') && $request->file('cast_certificate_image')->isValid()) ? upload_file($request->file('cast_certificate_image'), $this->cast_certificate_path, $employee->cast_certificate_image) : $employee->cast_certificate_image,
+            'passport_image' => ($request->hasFile('passport_image') && $request->file('passport_image')->isValid()) ? upload_file($request->file('passport_image'), $this->passport_path, $employee->passport_image) : $employee->passport_image,
+            'voter_image' => ($request->hasFile('voter_image') && $request->file('voter_image')->isValid()) ? upload_file($request->file('voter_image'), $this->voter_path, $employee->voter_image) : $employee->voter_image,
+            'drg_licence_image' => ($request->hasFile('drg_licence_image') && $request->file('drg_licence_image')->isValid()) ? upload_file($request->file('drg_licence_image'), $this->licence_path, $employee->drg_licence_image) : $employee->drg_licence_image,
+            'rationcard_image' => ($request->hasFile('rationcard_image') && $request->file('rationcard_image')->isValid()) ? upload_file($request->file('rationcard_image'), $this->rationcard_path, $employee->rationcard_image) : $employee->rationcard_image,
+            'blood_group_image' => ($request->hasFile('blood_group_image') && $request->file('blood_group_image')->isValid()) ? upload_file($request->file('blood_group_image'), $this->bloodgroup_path, $employee->blood_group_image) : $employee->blood_group_image,
+            'slc_image' => ($request->hasFile('slc_image') && $request->file('slc_image')->isValid()) ? upload_file($request->file('slc_image'), $this->slc_path, $employee->slc_image) : $employee->slc_image,
+            'salaryslip_image' => ($request->hasFile('salaryslip_image') && $request->file('salaryslip_image')->isValid()) ? upload_file($request->file('salaryslip_image'), $this->salaryslip_path, $employee->salaryslip_image) : $employee->salaryslip_image,
+            'Quality_knowledge' => $post_data['Quality_knowledge'],
+            'compuer_knowledge' => $post_data['compuer_knowledge'],
+            'notice_period' => $post_data['notice_period'],
+        ]);
 
-                // 'aadhar_image' => isset($post_data['aadhar_image']) && ! empty($post_data['aadhar_image']) ? upload_file($request->file('aadhar_image'), $this->aadhar_path, $employee->aadhar_image) : null,
-                'aadhar_image' => isset($post_data['aadhar_image']) && $request->hasFile('aadhar_image') && $request->file('aadhar_image')->isValid() ? upload_file($request->file('aadhar_image'), $this->aadhar_path, $employee->aadhar_image) : $employee->aadhar_image,
+        // Update academic details
+        $academicDetails = $request->institute_university;
+        // dd();
+        // dd($academicDetails);
+        if($academicDetails != NULL){
+        foreach ($academicDetails as $index => $academicDetail) {
+            // dd($request->file('education_image')[$index]);
+            $academic = AcademicDetails::updateOrCreate([
+                'id' => $request->academic_id[$index],
+            ],
+                [
+                    'employee_detail_id' => $employee->id,
+                    'institute_university' => $academicDetail,
+                    'year_of_passing' => $request->input('year_of_passing')[$index],
+                    'marks' => $request->input('marks')[$index],
+                    'remarks' => $request->input('remarks')[$index],
 
-                // 'pan_image' => isset($post_data['pan_image']) && ! empty($post_data['pan_image']) ? upload_file($request->file('pan_image'), $this->pan_path, $employee->pan_image) : null,
-                'pan_image' => isset($post_data['pan_image']) && $request->hasFile('pan_image') && $request->file('pan_image')->isValid() ? upload_file($request->file('pan_image'), $this->pan_path, $employee->pan_image) : $employee->pan_image,
+                ]
+            );
 
-                // 'bank_passbook_image' => isset($post_data['bank_passbook_image']) && ! empty($post_data['bank_passbook_image']) ? upload_file($request->file('bank_passbook_image'), $this->bank_passbook_path, $employee->bank_passbook_image) : null,
-                'bank_passbook_image' => isset($post_data['bank_passbook_image']) && $request->hasFile('bank_passbook_image') && $request->file('bank_passbook_image')->isValid() ? upload_file($request->file('bank_passbook_image'), $this->bank_passbook_path, $employee->bank_passbook_image) : $employee->bank_passbook_image,
+            // Handle Education Certificate Image
+            // $educationImageFile = $request->file('education_image')[$index];
+            // dd($educationImageFile);
+            $educationImageFile = $request->file("education_image.$index");
+            if ($educationImageFile) {
 
-                // 'cast_certificate_image' => isset($post_data['cast_certificate_image']) && ! empty($post_data['cast_certificate_image']) ? upload_file($request->file('cast_certificate_image'), $this->cast_certificate_path, $employee->cast_certificate_image) : null,
-                'cast_certificate_image' => isset($post_data['cast_certificate_image']) && $request->hasFile('cast_certificate_image') && $request->file('cast_certificate_image')->isValid() ? upload_file($request->file('cast_certificate_image'), $this->cast_certificate_path, $employee->cast_certificate_image) : $employee->cast_certificate_image,
-
-                // 'passport_image' => isset($post_data['passport_image']) && ! empty($post_data['passport_image']) ? upload_file($request->file('passport_image'), $this->passport_path, $employee->passport_image) : null,
-                'passport_image' => isset($post_data['passport_image']) && $request->hasFile('passport_image') && $request->file('passport_image')->isValid() ? upload_file($request->file('passport_image'), $this->passport_path, $employee->passport_image) : $employee->passport_image,
-
-                // 'voter_image' => isset($post_data['voter_image']) && ! empty($post_data['voter_image']) ? upload_file($request->file('voter_image'), $this->voter_path, $employee->voter_image) : null,
-                'voter_image' => isset($post_data['voter_image']) && $request->hasFile('voter_image') && $request->file('voter_image')->isValid() ? upload_file($request->file('voter_image'), $this->voter_path, $employee->voter_image) : $employee->voter_image,
-
-                // 'drg_licence_image' => isset($post_data['drg_licence_image']) && ! empty($post_data['drg_licence_image']) ? upload_file($request->file('drg_licence_image'), $this->licence_path, $employee->drg_licence_image) : null,
-                'drg_licence_image' => isset($post_data['drg_licence_image']) && $request->hasFile('drg_licence_image') && $request->file('drg_licence_image')->isValid() ? upload_file($request->file('drg_licence_image'), $this->licence_path, $employee->drg_licence_image) : $employee->drg_licence_image,
-
-                // 'rationcard_image' => isset($post_data['rationcard_image']) && ! empty($post_data['rationcard_image']) ? upload_file($request->file('rationcard_image'), $this->rationcard_path, $employee->rationcard_image) : null,
-                'rationcard_image' => isset($post_data['rationcard_image']) && $request->hasFile('rationcard_image') && $request->file('rationcard_image')->isValid() ? upload_file($request->file('rationcard_image'), $this->rationcard_path, $employee->rationcard_image) : $employee->rationcard_image,
-
-                // 'blood_group_image' => isset($post_data['blood_group_image']) && ! empty($post_data['blood_group_image']) ? upload_file($request->file('blood_group_image'), $this->bloodgroup_path, $employee->blood_group_image) : null,
-                'blood_group_image' => isset($post_data['blood_group_image']) && $request->hasFile('blood_group_image') && $request->file('blood_group_image')->isValid() ? upload_file($request->file('blood_group_image'), $this->bloodgroup_path, $employee->blood_group_image) : $employee->blood_group_image,
-
-                // 'slc_image' => isset($post_data['slc_image']) && ! empty($post_data['slc_image']) ? upload_file($request->file('slc_image'), $this->slc_path, $employee->slc_image) : null,
-                'slc_image' => isset($post_data['slc_image']) && $request->hasFile('slc_image') && $request->file('slc_image')->isValid() ? upload_file($request->file('slc_image'), $this->slc_path, $employee->slc_image) : $employee->slc_image,
-
-                // 'salaryslip_image' => isset($post_data['salaryslip_image']) && ! empty($post_data['salaryslip_image']) ? upload_file($request->file('salaryslip_image'), $this->salaryslip_path, $employee->salaryslip_image) : null,
-                'salaryslip_image' => isset($post_data['salaryslip_image']) && $request->hasFile('salaryslip_image') && $request->file('salaryslip_image')->isValid() ? upload_file($request->file('salaryslip_image'), $this->salaryslip_path, $employee->salaryslip_image) : $employee->salaryslip_image,
-
-                'Quality_knowledge' => $post_data['Quality_knowledge'],
-                'compuer_knowledge' => $post_data['compuer_knowledge'],
-                'notice_period' => $post_data['notice_period'],
-            ]);
-
-            // Update academic details
-            $academicDetails = $request->institute_university;
-            // dd($request->academic_id);
-            foreach ($academicDetails as $index => $academicDetail) {
-                $academic = AcademicDetails::updateOrCreate([
-                    'id' => $request->academic_id[$index],
-                ],
-                    [
-                        'employee_detail_id' => $employee->id,
-                        'institute_university' => $academicDetail,
-                        'year_of_passing' => $request->input('year_of_passing')[$index],
-                        'marks' => $request->input('marks')[$index],
-                        'remarks' => $request->input('remarks')[$index],
-
-                    ]
-                );
-
-                // Handle Education Certificate Image
-                $educationImageFile = $request->file("education_image.$index");
-                if ($educationImageFile) {
-                    // Upload and save the new image
-                    $educationImage = upload_file($educationImageFile, $this->education_path, $academic->education_image);
-                    AcademicDetails::where('id', $request->academic_id[$index])->update(['education_image' => $educationImage]);
-                }
+                // Upload and save the new image
+                $educationImage = upload_file($educationImageFile, $this->education_path, $academic->education_image);
+                AcademicDetails::where('id', $academic->id)->update(['education_image' => $educationImage]);
+                // AcademicDetails::where('id', $request->academic_id[$index])->update(['education_image' => $educationImage]);
             }
+         }
+        }
 
-            // Update Experience Details
+        // Update Experience Details
 
-            $experienceDetails = $request->company_name;
+        $experienceDetails = $request->company_name;
+        if ($experienceDetails != NUll) {
+
             foreach ($experienceDetails as $index => $experienceDetail) {
                 $experience = ExperienceDetails::updateOrCreate([
                     'id' => $request->experience_id[$index],
@@ -436,13 +426,18 @@ class EmployeeController extends Controller
                 if ($experienceImageFile) {
                     // Upload and save the new image
                     $experienceImage = upload_file($experienceImageFile, $this->experience_path, $experience->experience_certificate_image);
-                    ExperienceDetails::where('id', $request->experience_id[$index])->update(['experience_certificate_image' => $experienceImage]);
+                    // ExperienceDetails::where('id', $request->experience_id[$index])->update(['experience_certificate_image' => $experienceImage]);
+                    ExperienceDetails::where('id', $experience->id)->update(['experience_certificate_image' => $experienceImage]);
                 }
             }
+        }
 
-            // Update Family Details
+        // Update Family Details
 
-            $familyDetails = $request->fm_name;
+        $familyDetails = $request->fm_name;
+
+        if ($familyDetails != NULL) {
+
             foreach ($familyDetails as $index => $familyDetail) {
                 $family = FamilyDetails::updateOrCreate([
                     'id' => $request->family_id[$index],
@@ -458,38 +453,40 @@ class EmployeeController extends Controller
                 );
 
             }
+        }
 
-            // HR Department Details
+        // HR Department Details
 
-            $hrdetails = HrDetails::findOrFail($id);
-            $hrdetails->update([
-                'offered_salary' => $post_data['offered_salary'],
-                'revised_salary' => $post_data['revised_salary'],
-                'revised_salary' => $post_data['revised_salary'],
-                'date_of_revise_salary' => $post_data['date_of_revise_salary'],
-                'mobile_permission' => $post_data['mobile_permission'],
-                'job_time' => $post_data['job_time'],
-                'probation_period' => $post_data['probation_period'],
-            ]);
+        $hrdetails = HrDetails::findOrFail($id);
+        $hrdetails->update([
+            'offered_salary' => $post_data['offered_salary'],
+            'revised_salary' => $post_data['revised_salary'],
+            'revised_salary' => $post_data['revised_salary'],
+            'date_of_revise_salary' => $post_data['date_of_revise_salary'],
+            'mobile_permission' => $post_data['mobile_permission'],
+            'job_time' => $post_data['job_time'],
+            'probation_period' => $post_data['probation_period'],
+        ]);
 
-            // Employee Training History Card
+        // Employee Training History Card
 
-            $historyData = EmployeeTrainingHistory::findOrFail($id);
+        $historyData = EmployeeTrainingHistory::findOrFail($id);
 
-            $historyData->update([
-                'description_of_training' => $post_data['description_of_training'],
-                'training_given_by' => $post_data['training_given_by'],
-                'date_of_training' => $post_data['date_of_training'],
-                'remark' => $post_data['remark'],
-            ]);
+        $historyData->update([
+            'description_of_training' => $post_data['description_of_training'],
+            'training_given_by' => $post_data['training_given_by'],
+            'date_of_training' => $post_data['date_of_training'],
+            'remark' => $post_data['remark'],
+        ]);
 
-            // Commit the transaction
-            session()->flash('success', 'Employee Updated Successfully.');
-            DB::commit();
+        // Commit the transaction
+        session()->flash('success', 'Employee Updated Successfully.');
+        DB::commit();
 
-            return response()->json(['status' => 'success', 'message' => 'Employee updated successfully.']);
+        return response()->json(['status' => 'success', 'message' => 'Employee updated successfully.']);
         } catch (\Throwable $e) {
             // dd($e);
+            dd($e->getMessage());
             // Rollback the transaction on error
             session()->flash('fail', 'Something went wrong. Please try again later.');
             DB::rollback();
@@ -538,10 +535,7 @@ class EmployeeController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function ($data) {
                     $action = '<a href="'.url('employee-detail/'.$data['id']).'" class="view btn btn-sm btn-success"><i class="fa-solid fa-eye"></i></a> <a href="'.url('employee-detail/'.$data['id'].'/edit').'" class="edit btn btn-sm btn-primary"><i class="fa-solid fa-pen-to-square"></i></a> <a href="javascript:void(0)" class="delete_btn delete btn btn-sm btn-danger" data-id="'.$data->id.'"><i class="fa-solid fa-trash"></i></a>
-                    
-                    <a href="'.url('print_pdf', $data['id']).'" class="btn btn-sm btn-warning" data-id="'.$data->id.'"><i class="fa-solid fa-file-pdf"></i></a>
-                    
-                    <a href="javascript:void(0)" class="btn btn-sm btn-info" data-id="'.$data->id.'"><i class="fa-solid fa-print"></i></a>';
+                    <a href="'.url('print_pdf', $data['id']).'" class="btn btn-sm btn-warning" data-id="'.$data->id.'"><i class="fa-solid fa-file-pdf"></i></a>';
 
                     return $action;
                 })
@@ -558,12 +552,17 @@ class EmployeeController extends Controller
         // dd($data['hrdetails'][0]['job_time']);
         $pdf = PDF::loadview('user.employee.emp_pdf', compact('data'));
 
-        return $pdf->download('employee_details.pdf');
+        return $pdf->stream('employee_details.pdf');
     }
 
     public function delete_academic($id)
     {
+        // $delete_academic = AcademicDetails::where('id', $id)->delete();
+        $academic_data = AcademicDetails::where('id', $id)->get(['education_image']);
+        // dd($academic_data[0]->education_image);
+        upload_file('', $this->education_path, $academic_data[0]->education_image);
         $delete_academic = AcademicDetails::where('id', $id)->delete();
+
         if ($delete_academic) {
             return response()->json(['status' => 'success']);
         } else {
@@ -573,7 +572,11 @@ class EmployeeController extends Controller
 
     public function delete_experience($id)
     {
+        // $delete_experience = ExperienceDetails::where('id', $id)->delete();
+        $experience_data = ExperienceDetails::where('id', $id)->get(['experience_certificate_image']);
+        upload_file('', $this->experience_path, $experience_data[0]->experience_certificate_image);
         $delete_experience = ExperienceDetails::where('id', $id)->delete();
+
         if ($delete_experience) {
             return response()->json(['status' => 'success']);
         } else {

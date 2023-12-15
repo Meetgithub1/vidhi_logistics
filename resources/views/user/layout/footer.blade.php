@@ -57,6 +57,7 @@
 <script src="{{ url('public/') }}/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js"></script>
 
 <!-- Main JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.print/1.6.2/jQuery.print.min.js"></script>
 <script src="{{ url('public/') }}/assets/js/main.js"></script>
 
 <!-- Page JS -->
@@ -64,4 +65,5 @@
 <script src="{{ url('public/') }}/assets/js/form-basic-inputs.js"></script>
 <script src="{{ url('public/') }}/assets/js/extended-ui-sweetalert2.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script src="{{ url('public/') }}/assets/js/ui-carousel.js"></script>
 <script src="{{ url('public/') }}/assets/js/dashboards-analytics.js"></script>

@@ -40,12 +40,17 @@ return new class extends Migration
             $table->string('voter_number')->nullable();
             $table->string('height')->nullable();
             $table->string('weight')->nullable();
-            $table->string('emp_designation')->nullable();
-            $table->string('department')->nullable();
+            // $table->string('emp_designation')->nullable();
+            // $table->string('department')->nullable();
+
+            $table->enum('emp_designation', ['Managar', 'Supervisor', 'Inspector', 'Fitter', 'Tester', 'Helper', 'Painter', 'Operator', 'Forklift Driver'])->nullable();
+
+            $table->enum('department', ['Application', 'Assembly cell-1', 'Assembly XL/VARSHA/SM', 'Engine Lifting', 'Engine Rework', 'Fork Lift Driver', 'KPS', 'Oil Filling', 'Packing', 'Painting', 'Pipe/Tork/Tappet', 'Product Support', 'Startebility Test Export', 'Store Helper', 'Sub Assembly', 'Testing', 'Washing Helper', 'Material', 'Store Supervisor', 'Production', 'QA', 'SQIP', 'P&IR HR', 'IT', 'Landscaping', 'Pump Base Plate', 'Water Leackage'])->nullable();
+
             $table->date('date_of_joining')->nullable();
             $table->enum('gender', ['male', 'female'])->nullable();
             $table->enum('category', ['direct', 'indirect'])->nullable();
-            $table->enum('marital_status', ['single', 'married','divorced','widow','other'])->nullable();
+            $table->enum('marital_status', ['single', 'married', 'divorced', 'widow', 'other'])->nullable();
             $table->text('details_of_surgical_operation')->nullable();
             $table->text('details_of_civil_or_criminal_litigation')->nullable();
             $table->string('language')->nullable();
@@ -65,7 +70,7 @@ return new class extends Migration
             $table->string('slc_image')->nullable();
             $table->string('salaryslip_image')->nullable();
             $table->enum('Quality_knowledge', ['yes', 'no'])->nullable();
-            $table->string('compuer_knowledge')->default('Ms-office','AutoCAD','Other')->nullable();
+            $table->string('compuer_knowledge')->default('Ms-office', 'AutoCAD', 'Other')->nullable();
             $table->string('notice_period')->default('ONE MONTH FROM DATE OF RESIGN')->nullable();
             $table->timestamps();
         });

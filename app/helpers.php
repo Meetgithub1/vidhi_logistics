@@ -42,6 +42,6 @@ if (! function_exists('upload_file')) {
             return $file_name;
         }
 
-        // return null; // or handle invalid file case
+        return null; // or handle invalid file case
     }
 }

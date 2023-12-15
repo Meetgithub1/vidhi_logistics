@@ -42,18 +42,24 @@
     <link rel="stylesheet" href="{{ url('public/') }}/assets/vendor/libs/animate-css/animate.css" />
     <link rel="stylesheet" href="{{ url('public/') }}/assets/vendor/libs/sweetalert2/sweetalert2.css" />
     <link rel="stylesheet" href="{{ url('public/') }}/assets/vendor/libs/flatpickr/flatpickr.css" />
-    <link rel="stylesheet" href="{{ url('public/') }}/assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.css" />
-    <link rel="stylesheet" href="{{ url('public/') }}/assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.css" />
+    <link rel="stylesheet"
+        href="{{ url('public/') }}/assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.css" />
+    <link rel="stylesheet"
+        href="{{ url('public/') }}/assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.css" />
     <link rel="stylesheet" href="{{ url('public/') }}/assets/vendor/libs/jquery-timepicker/jquery-timepicker.css" />
     <link rel="stylesheet" href="{{ url('public/') }}/assets/vendor/libs/pickr/pickr-themes.css" />
     <link rel="stylesheet" href="{{ url('public/') }}/assets/vendor/libs/spinkit/spinkit.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
     <link rel="stylesheet" href="{{ url('public/') }}/assets/vendor/libs/swiper/swiper.css" />
     <link rel="stylesheet" href="{{ url('public/') }}/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css" />
-    <link rel="stylesheet" href="{{ url('public/') }}/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css" />
-    <link rel="stylesheet" href="{{ url('public/') }}/assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css" />
+    <link rel="stylesheet"
+        href="{{ url('public/') }}/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css" />
+    <link rel="stylesheet"
+        href="{{ url('public/') }}/assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css" />
+    <link rel="stylesheet" href="{{ url('public/') }}/assets/css/loader.css">
 
     <!-- Page CSS -->
+    <link rel="stylesheet" href="{{ url('public/') }}/assets/vendor/css/pages/ui-carousel.css" />
     <link rel="stylesheet" href="{{ url('public/') }}/assets/vendor/css/pages/cards-advance.css" />
     <!-- Helpers -->
     <script src="{{ url('public/') }}/assets/vendor/js/helpers.js"></script>
@@ -67,23 +73,22 @@
         #template-customizer {
             display: none;
         }
+
         .toastr-dark {
             background-color: #333;
             color: #fff;
         }
-        .plus-icon-color{
+
+        .plus-icon-color {
             color: white
         }
     </style>
 </head>
 
 <body>
-    {{-- <div class="custom_loading">
+    <div class="custom_loading">
         <div class="spinner spinner-border mdi-48px text-white text-opacity-75" role="status"><i class="sr-only"></i>
         </div>
-    </div> --}}
-    <div class="spinner-border spinner-border-lg text-primary custom_loading" role="status">
-        <span class="visually-hidden">Loading...</span>
     </div>
 
 
@@ -104,14 +109,17 @@
                     </div>
 
                 </div>
-
                 @include('user.layout.footer')
                 @include('user.layout.notification')
                 <script>
-                toastr.options = {
+                    toastr.options = {
                     toastClass: 'toastr-green',
                     // Other options...
                 };
+                function show_loader() {$('.custom_loading').show()}
+                function hide_loader() {$('.custom_loading').hide()}
+                // End Hide Show Loader
+                hide_loader();
                 </script>
                 @yield('script')
 </body>

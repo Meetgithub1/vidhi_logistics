@@ -157,7 +157,7 @@
                         <div class="form-floating">
                             <input type="text" name="age" class="form-control" id="year" placeholder="Age"
                                 aria-describedby="floatingInputHelp" value="{{ $data->age }}" disabled />
-                            <input type="hidden" name="calculated_age" id="calculated_age" />
+                            <input type="hidden" name="calculated_age" id="calculated_age" value="{{ $data->age }}" />
                             <label for="age-calculate">Age</label>
                         </div>
                     </div>
@@ -207,20 +207,88 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    <div class="form-floating">
-                        <input type="text" name="emp_designation" class="form-control" id="floatingInput"
-                            placeholder="Designation" aria-describedby="floatingInputHelp"
-                            value="{{ $data->emp_designation }}" />
-                        <label for="floatingInput">Designation</label>
-                    </div>
+                    {{-- <input type="text" name="emp_designation" class="form-control" id="floatingInput"
+                        placeholder="Designation" aria-describedby="floatingInputHelp"
+                        value="{{ $data->emp_designation }}" />
+                    <label for="floatingInput">Designation</label> --}}
+                    <label for="defaultSelect" class="form-label">Designation</label>
+                    <select id="defaultSelect" class="form-select" name="emp_designation">
+                        <option selected value="">Select</option>
+                        <option value="Managar" {{ $data->emp_designation == 'Managar' ? 'selected' : '' }}>Managar
+                        </option>
+                        <option value="Supervisor" {{ $data->emp_designation == 'Supervisor' ? 'selected' : ''
+                            }}>Supervisor</option>
+                        <option value="Inspector" {{ $data->emp_designation == 'Inspector' ? 'selected' : ''
+                            }}>Inspector</option>
+                        <option value="Fitter" {{ $data->emp_designation == 'Fitter' ? 'selected' : '' }}>Fitter
+                        </option>
+                        <option value="Tester" {{ $data->emp_designation == 'Tester' ? 'selected' : '' }}>Tester
+                        </option>
+                        <option value="Helper" {{ $data->emp_designation == 'Helper' ? 'selected' : '' }}>Helper
+                        </option>
+                        <option value="Painter" {{ $data->emp_designation == 'Painter' ? 'selected' : '' }}>Painter
+                        </option>
+                        <option value="Operator" {{ $data->emp_designation == 'Operator' ? 'selected' : '' }}>Operator
+                        </option>
+                        <option value="Forklift Driver" {{ $data->emp_designation == 'Forklift Driver' ? 'selected' : ''
+                            }}>Forklift Driver</option>
+                    </select>
                 </div>
                 <div class="mb-3">
-                    <div class="form-floating">
-                        <input type="text" name="department" class="form-control" id="floatingInput"
-                            placeholder="Department" aria-describedby="floatingInputHelp"
-                            value="{{ $data->department }}" />
-                        <label for="floatingInput">Department</label>
-                    </div>
+                    {{-- <input type="text" name="department" class="form-control" id="floatingInput"
+                        placeholder="Department" aria-describedby="floatingInputHelp" value="{{ $data->department }}" />
+                    <label for="floatingInput">Department</label> --}}
+                    <label for="defaultSelect" class="form-label">Department</label>
+                    <select id="defaultSelect" class="form-select" name="department">
+                        <option selected value="">Select</option>
+                        <option value="Application" {{ $data->department == 'Application' ? 'selected' : ''
+                            }}>Application</option>
+                        <option value="Assembly cell-1" {{ $data->department == 'Assembly cell-1' ? 'selected' : ''
+                            }}>Assembly cell-1</option>
+                        <option value="Assembly XL/VARSHA/SM" {{ $data->department == 'Assembly XL/VARSHA/SM' ?
+                            'selected' : '' }}>Assembly XL/VARSHA/SM</option>
+                        <option value="Engine Lifting" {{ $data->department == 'Engine Lifting' ? 'selected' : ''
+                            }}>Engine Lifting</option>
+                        <option value="Enginr Rework" {{ $data->department == 'Enginr Rework' ? 'selected' : ''
+                            }}>Engine Rework</option>
+                        <option value="Fork Lift Driver" {{ $data->department == 'Fork Lift Driver' ? 'selected' : ''
+                            }}>Fork Lift Driver</option>
+                        <option value="KPS" {{ $data->department == 'KPS' ? 'selected' : '' }}>KPS</option>
+                        <option value="Oil Filling" {{ $data->department == 'Oil Filling' ? 'selected' : '' }}>Oil
+                            Filling</option>
+                        <option value="Packing" {{ $data->department == 'Packing' ? 'selected' : '' }}>Packing</option>
+                        <option value="Painting" {{ $data->department == 'Painting' ? 'selected' : '' }}>Painting
+                        </option>
+                        <option value="Pipe/Tork/Tappet" {{ $data->department == 'Pipe/Tork/Tappet' ? 'selected' : ''
+                            }}>Pipe/Tork/Tappet</option>
+                        <option value="Product Support" {{ $data->department == 'Product Support' ? 'selected' : ''
+                            }}>Product Support</option>
+                        <option value="Startebility Test Export" {{ $data->department == 'Startebility Test Export' ?
+                            'selected' : '' }}>Startebility Test Export</option>
+                        <option value="Store Helper" {{ $data->department == 'Store Helper' ? 'selected' : '' }}>Store
+                            Helper</option>
+                        <option value="Sub Assembly" {{ $data->department == 'Sub Assembly' ? 'selected' : '' }}>Sub
+                            Assembly</option>
+                        <option value="Testing" {{ $data->department == 'Testing' ? 'selected' : '' }}>Testing</option>
+                        <option value="Washing Helper" {{ $data->department == 'Washing Helper' ? 'selected' : ''
+                            }}>Washing Helper</option>
+                        <option value="Material" {{ $data->department == 'Material' ? 'selected' : '' }}>Material
+                        </option>
+                        <option value="Store Supervisor" {{ $data->department == 'Store Supervisor' ? 'selected' : ''
+                            }}>Store Supervisor</option>
+                        <option value="Production" {{ $data->department == 'Production' ? 'selected' : '' }}>Production
+                        </option>
+                        <option value="QA" {{ $data->department == 'QA' ? 'selected' : '' }}>Q.A.</option>
+                        <option value="SQIP" {{ $data->department == 'SQIP' ? 'selected' : '' }}>SQIP</option>
+                        <option value="P&IR HR" {{ $data->department == 'P&IR HR' ? 'selected' : '' }}>P&IR HR</option>
+                        <option value="IT" {{ $data->department == 'IT' ? 'selected' : '' }}>IT</option>
+                        <option value="Landscaping" {{ $data->department == 'Landscaping' ? 'selected' : ''
+                            }}>Landscaping</option>
+                        <option value="Pump Base Plate" {{ $data->department == 'Pump Base Plate' ? 'selected' : ''
+                            }}>Landscaping</option>
+                        <option value="Water Leackage" {{ $data->department == 'Water Leackage' ? 'selected' : ''
+                            }}>Landscaping</option>
+                    </select>
                 </div>
                 <div class="mb-3">
                     <label for="defaultSelect" class="form-label">Category</label>
@@ -248,6 +316,26 @@
                     <textarea class="form-control" name="details_of_civil_or_criminal_litigation"
                         id="exampleFormControlTextarea1"
                         rows="3">{{ $data->details_of_civil_or_criminal_litigation }}</textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="defaultSelect" class="form-label">Quality Knowledge</label>
+                    <select id="defaultSelect" class="form-select" name="Quality_knowledge">
+                        <option selected value="">Select</option>
+                        <option value="yes" {{ $data->Quality_knowledge == 'yes' ? 'selected' : '' }}>Yes</option>
+                        <option value="no" {{ $data->Quality_knowledge == 'no' ? 'selected' : '' }}>no</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="defaultSelect" class="form-label">Computer Knowledge</label>
+                    <select id="defaultSelect" class="form-select" name="compuer_knowledge">
+                        <option selected value="">Select</option>
+                        <option value="Ms-office" {{ $data->compuer_knowledge == 'Ms-office' ? 'selected' : '' }}>
+                            Ms-Office</option>
+                        <option value="AutoCAD" {{ $data->compuer_knowledge == 'AutoCAD' ? 'selected' : '' }}>AutoCAD
+                        </option>
+                        <option value="Other" {{ $data->compuer_knowledge == 'Other' ? 'selected' : '' }}>Other
+                        </option>
+                    </select>
                 </div>
             </div>
 
@@ -284,7 +372,6 @@
                 <div class="mb-3">
                     <label for="formFile" class="form-label">Employee Image</label>
                     <input class="form-control" name="emp_image" type="file" />
-                    <input type="hidden" name="emp_image_old" type="file" value="{{ $data->emp_image }}">
                 </div>
                 @if (isset($data->emp_image) && !empty($data->emp_image))
                 <a href="{{ asset('storage/uploads/personal_details/emp_photos/' . $data->emp_image) }}"
@@ -295,7 +382,6 @@
                 <div class="mb-3">
                     <label for="formFile" class="form-label">Aadhar Card</label>
                     <input class="form-control" name="aadhar_image" type="file" />
-                    <input type="hidden" name="aadhar_image_old" type="file" value="{{ $data->aadhar_image }}">
                 </div>
                 @if (isset($data->aadhar_image) && !empty($data->aadhar_image))
                 <a href="{{ asset('storage/uploads/personal_details/aadhar_images/' . $data->aadhar_image) }}"
@@ -303,10 +389,9 @@
                         src="{{ asset('storage/uploads/personal_details/aadhar_images/' . $data->aadhar_image) }}"
                         alt="Aadhar Image" height="100px" width="100px"></a>
                 @endif
-                <div class="mb-3">
+                <div class="mb-3 mt-5">
                     <label for="formFile" class="form-label">Pan Card</label>
                     <input class="form-control" name="pan_image" type="file" />
-                    <input type="hidden" name="pan_image_old" type="file" value="{{ $data->pan_image }}">
                 </div>
                 @if (isset($data->pan_image) && !empty($data->pan_image))
                 <a href="{{ asset('storage/uploads/personal_details/pan_images/' . $data->pan_image) }}"
@@ -314,11 +399,9 @@
                         src="{{ asset('storage/uploads/personal_details/pan_images/' . $data->pan_image) }}"
                         alt="Pan Image" height="100px" width="100px"></a>
                 @endif
-                <div class="mb-3">
+                <div class="mb-3 mt-5">
                     <label for="formFile" class="form-label">Bank Cheque/Bank Passbook</label>
                     <input class="form-control" name="bank_passbook_image" type="file" />
-                    <input type="hidden" name="bank_passbook_image_old" type="file"
-                        value="{{ $data->bank_passbook_image }}">
                 </div>
                 @if (isset($data->bank_passbook_image) && !empty($data->bank_passbook_image))
                 <a href="{{ asset('storage/uploads/personal_details/bank_passbook_images/' . $data->bank_passbook_image) }}"
@@ -326,11 +409,9 @@
                         src="{{ asset('storage/uploads/personal_details/bank_passbook_images/' . $data->bank_passbook_image) }}"
                         alt="Pan Image" height="100px" width="100px"></a>
                 @endif
-                <div class="mb-3">
+                <div class="mb-3 mt-5">
                     <label for="formFile" class="form-label">Cast Certificate</label>
                     <input class="form-control" name="cast_certificate_image" type="file" />
-                    <input type="hidden" name="cast_certificate_image_old" type="file"
-                        value="{{ $data->cast_certificate_image }}">
                 </div>
                 @if (isset($data->cast_certificate_image) && !empty($data->cast_certificate_image))
                 <a href="{{ asset('storage/uploads/personal_details/cast_certificate_images/' . $data->cast_certificate_image) }}"
@@ -338,10 +419,9 @@
                         src="{{ asset('storage/uploads/personal_details/cast_certificate_images/' . $data->cast_certificate_image) }}"
                         alt="Cast Certificate Image" height="100px" width="100px"></a>
                 @endif
-                <div class="mb-3">
+                <div class="mb-3 mt-5">
                     <label for="formFile" class="form-label">Passport</label>
                     <input class="form-control" name="passport_image" type="file" />
-                    <input type="hidden" name="passport_image_old" type="file" value="{{ $data->passport_image }}">
                 </div>
                 @if (isset($data->passport_image) && !empty($data->passport_image))
                 <a href="{{ asset('storage/uploads/personal_details/passport_images/' . $data->passport_image) }}"
@@ -349,10 +429,9 @@
                         src="{{ asset('storage/uploads/personal_details/passport_images/' . $data->passport_image) }}"
                         alt="Passport Image" height="100px" width="100px"></a>
                 @endif
-                <div class="mb-3">
+                <div class="mb-3 mt-5">
                     <label for="formFile" class="form-label">Voter Id</label>
                     <input class="form-control" name="voter_image" type="file" />
-                    <input type="hidden" name="voter_image_old" type="file" value="{{ $data->voter_image }}">
                 </div>
                 @if (isset($data->voter_image) && !empty($data->voter_image))
                 <a href="{{ asset('storage/uploads/personal_details/voter_images/' . $data->voter_image) }}"
@@ -360,11 +439,9 @@
                         src="{{ asset('storage/uploads/personal_details/voter_images/' . $data->voter_image) }}"
                         alt="Voter Image" height="100px" width="100px"></a>
                 @endif
-                <div class="mb-3">
+                <div class="mb-3 mt-5">
                     <label for="formFile" class="form-label">Driving Licence</label>
                     <input class="form-control" name="drg_licence_image" type="file" />
-                    <input type="hidden" name="drg_licence_image_old" type="file"
-                        value="{{ $data->drg_licence_image }}">
                 </div>
                 @if (isset($data->drg_licence_image) && !empty($data->drg_licence_image))
                 <a href="{{ asset('storage/uploads/personal_details/drg_licence_images/' . $data->drg_licence_image) }}"
@@ -372,10 +449,9 @@
                         src="{{ asset('storage/uploads/personal_details/drg_licence_images/' . $data->drg_licence_image) }}"
                         alt="Driving Licence Image" height="100px" width="100px"></a>
                 @endif
-                <div class="mb-3">
+                <div class="mb-3 mt-5">
                     <label for="formFile" class="form-label">Rationcard</label>
                     <input class="form-control" name="rationcard_image" type="file" />
-                    <input type="hidden" name="rationcard_image_old" type="file" value="{{ $data->rationcard_image }}">
                 </div>
                 @if (isset($data->rationcard_image) && !empty($data->rationcard_image))
                 <a href="{{ asset('storage/uploads/personal_details/rationcard_images/' . $data->rationcard_image) }}"
@@ -383,11 +459,9 @@
                         src="{{ asset('storage/uploads/personal_details/rationcard_images/' . $data->rationcard_image) }}"
                         alt="Rationcard Image" height="100px" width="100px"></a>
                 @endif
-                <div class="mb-3">
+                <div class="mb-3 mt-5">
                     <label for="formFile" class="form-label">Blood Group</label>
                     <input class="form-control" name="blood_group_image" type="file" />
-                    <input type="hidden" name="blood_group_image_old" type="file"
-                        value="{{ $data->blood_group_image }}">
                 </div>
                 @if (isset($data->blood_group_image) && !empty($data->blood_group_image))
                 <a href="{{ asset('storage/uploads/personal_details/blood_group_images/' . $data->blood_group_image) }}"
@@ -395,10 +469,9 @@
                         src="{{ asset('storage/uploads/personal_details/blood_group_images/' . $data->blood_group_image) }}"
                         alt="Blood Group Image" height="100px" width="100px"></a>
                 @endif
-                <div class="mb-3">
+                <div class="mb-3 mt-5">
                     <label for="formFile" class="form-label">SLC</label>
                     <input class="form-control" name="slc_image" type="file" />
-                    <input type="hidden" name="slc_image_old" type="file" value="{{ $data->slc_image }}">
                 </div>
                 @if (isset($data->slc_image) && !empty($data->slc_image))
                 <a href="{{ asset('storage/uploads/personal_details/slc_images/' . $data->slc_image) }}"
@@ -406,10 +479,9 @@
                         src="{{ asset('storage/uploads/personal_details/slc_images/' . $data->slc_image) }}"
                         alt="SLC Image" height="100px" width="100px"></a>
                 @endif
-                <div class="mb-3">
+                <div class="mb-3 mt-5">
                     <label for="formFile" class="form-label">Salary Slip</label>
                     <input class="form-control" name="salaryslip_image" type="file" />
-                    <input type="hidden" name="salaryslip_image_old" type="file" value="{{ $data->salaryslip_image }}">
                 </div>
                 @if (isset($data->salaryslip_image) && !empty($data->salaryslip_image))
                 <a href="{{ asset('storage/uploads/personal_details/salaryslip_images/' . $data->salaryslip_image) }}"
@@ -443,26 +515,7 @@
                     <textarea class="form-control" name="reason_for_job_change" id="exampleFormControlTextarea1"
                         rows="3">{{ $data->reason_for_job_change }}</textarea>
                 </div>
-                <div class="mb-3">
-                    <label for="defaultSelect" class="form-label">Quality Knowledge</label>
-                    <select id="defaultSelect" class="form-select" name="Quality_knowledge">
-                        <option selected value="">Select</option>
-                        <option value="yes" {{ $data->Quality_knowledge == 'yes' ? 'selected' : '' }}>Yes</option>
-                        <option value="no" {{ $data->Quality_knowledge == 'no' ? 'selected' : '' }}>no</option>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label for="defaultSelect" class="form-label">Computer Knowledge</label>
-                    <select id="defaultSelect" class="form-select" name="compuer_knowledge">
-                        <option selected value="">Select</option>
-                        <option value="Ms-office" {{ $data->compuer_knowledge == 'Ms-office' ? 'selected' : '' }}>
-                            Ms-Office</option>
-                        <option value="AutoCAD" {{ $data->compuer_knowledge == 'AutoCAD' ? 'selected' : '' }}>AutoCAD
-                        </option>
-                        <option value="Other" {{ $data->compuer_knowledge == 'Other' ? 'selected' : '' }}>Other
-                        </option>
-                    </select>
-                </div>
+
                 <div class="mb-3">
                     <div class="form-floating">
                         <input type="text" name="notice_period" class="form-control" id="floatingInput"
@@ -1365,7 +1418,7 @@
 
             $(document).on("submit", "#form_id", function(e) {
                 e.preventDefault();
-                // show_loader();
+                show_loader();
                 // var url = "{{ url('job-applicant') }}";
                 var formData = new FormData($('#form_id')[0]);
 
@@ -1399,7 +1452,7 @@
                                 $('#' + key + '_error').text(value[0]);
                             });
                         }
-                        // hide_loader();
+                        hide_loader();
                     }
                 });
             });
